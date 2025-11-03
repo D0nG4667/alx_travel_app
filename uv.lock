@@ -17,6 +17,7 @@ dependencies = [
     { name = "gunicorn" },
     { name = "mysqlclient" },
     { name = "rabbitmq" },
+    { name = "sqlparse" },
 ]
 
 [package.dev-dependencies]
@@ -36,6 +37,7 @@ requires-dist = [
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "mysqlclient", specifier = ">=2.2.7" },
     { name = "rabbitmq", specifier = ">=0.2.0" },
+    { name = "sqlparse", specifier = ">=0.5.3" },
 ]
 
 [package.metadata.requires-dev]

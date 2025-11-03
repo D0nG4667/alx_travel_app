@@ -13,6 +13,7 @@ services:
       - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
       interval: 10s
@@ -37,13 +38,19 @@ services:
       dockerfile: Dockerfile
     container_name: alxtravel-web
     command: >
-      sh -c "python manage.py migrate --noinput &&
-             python manage.py collectstatic --noinput &&
-             gunicorn alx_travel_app.wsgi:application --bind 0.0.0.0:8000"
+      sh -c "uv run manage.py migrate --noinput &&
+             uv run manage.py collectstatic --noinput &&
+             uv run gunicorn alx_travel_app.wsgi:application --bind 0.0.0.0:8000"
+    expose:
+      - "8000"
     env_file:
       - .env
     volumes:
-      - .:/app
+      - ./alx_travel_app:/app/alx_travel_app
+      - ./listings:/app/listings
+      - ./manage.py:/app/manage.py
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
     ports:
       - "8000:8000"
     depends_on:
@@ -66,7 +73,19 @@ services:
         # Rebuild the image on changes to the `pyproject.toml`
         - action: rebuild
           path: ./pyproject.toml
+    
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    ports:
+      - "8080:8000"   # guest:host
+    depends_on:
+      - web
 
 volumes:
   db_data:
   rabbitmq_data:
+  static_volume:
+  media_volume:

@@ -1,0 +1,32 @@
+# Bytecode and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+.env/
+
+# Version control
+.git
+.gitignore
+
+# OS / editor files
+.DS_Store
+*.swp
+*.swo
+
+# Test / tooling caches
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker itself
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# venv
+.venv/
