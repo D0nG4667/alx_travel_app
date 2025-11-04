@@ -46,34 +46,44 @@ This setup ensures scalability, maintainability, and readiness for production.
 
 ## Requirements
 
-- Python 3.11+
-- Django 4.x
+- Python 3.12+
+- Django 5.x
 - MySQL 8.x
 - Docker & Docker Compose (optional for local container setup)
-- RabbitMQ (optional, required for Celery background tasks)
+- RabbitMQ (required for Celery background tasks)
 
 ---
 
 ## Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/yourusername/alx_travel_app.git
    cd alx_travel_app
-````
+
+   ```
 
 2. **Create a virtual environment:**
 
    ```bash
-   python -m venv venv
+   uv venv
    source venv/bin/activate  # Linux / Mac
    venv\Scripts\activate     # Windows
    ```
 
 3. **Install dependencies:**
 
+   **Recommended**
+
    ```bash
-   pip install -r requirements.txt
+   uv sync
+   ```
+
+   **Alternative**
+
+   ```bash
+   pip install -r requirement.txt
    ```
 
 ---
@@ -129,7 +139,7 @@ This setup ensures scalability, maintainability, and readiness for production.
 
 2. Access the app at:
 
-   ```
+   ```link
    http://127.0.0.1:8000/
    ```
 
@@ -139,8 +149,8 @@ This setup ensures scalability, maintainability, and readiness for production.
 
 Swagger and ReDoc endpoints:
 
-* Swagger UI: [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/)
-* ReDoc: [http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
+- Swagger UI: [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/)
+- ReDoc: [http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
 
 These endpoints automatically document all API routes.
 
@@ -156,9 +166,9 @@ These endpoints automatically document all API routes.
 
 2. Services included:
 
-   * **Django app**
-   * **MySQL**
-   * **RabbitMQ**
+   - **Django app**
+   - **MySQL**
+   - **RabbitMQ**
 
 3. Apply migrations inside the Django container:
 
@@ -172,7 +182,7 @@ These endpoints automatically document all API routes.
 
 ## Future Enhancements
 
-* Implement user authentication and permissions.
-* Add advanced search and filtering for listings.
-* Integrate frontend SPA (React) with REST API.
-* Add background tasks for notifications, emails, and reporting.
+- Implement user authentication and permissions.
+- Add advanced search and filtering for listings.
+- Integrate frontend SPA (React) with REST API.
+- Add background tasks for notifications, emails, and reporting.
